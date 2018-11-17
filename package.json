@@ -1,0 +1,82 @@
+{
+  "name": "html-to-array",
+  "version": "1.0.0",
+  "description": "Scrap a html page and convert all text on the page into an array.",
+  "homepage": "https://www.robertgabriel.ninja",
+  "author": {
+    "name": "Robert James Gabriel",
+    "email": "robert_gabriel@outlook.com",
+    "url": "https://www.robertgabriel.ninja"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "keywords": [
+    "node",
+    "html",
+    "scrapping",
+    "scrap",
+    "html to array"
+  ],
+  "devDependencies": {
+    "coveralls": "^3.0.0",
+    "eslint": "^5.4.0",
+    "prettier": "^1.11.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.2",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-config-xo": "^0.24.2",
+    "jest": "^23.5.0"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "xo",
+      "prettier"
+    ],
+    "env": {
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ]
+    },
+    "plugins": [
+      "prettier"
+    ]
+  },
+  "scripts": {
+    "pretest": "eslint .",
+    "precommit": "lint-staged",
+    "test": "jest"
+  },
+  "repository": "https://github.com/RobertJGabriel/html-to-array.git",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "request": "^2.88.0",
+    "sanitize-html": "^1.19.1"
+  }
+}
