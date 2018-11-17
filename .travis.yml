@@ -4,5 +4,11 @@ node_js:
   - v10
   - v8
   - v6
-  - v4
+
+before_install:
+- npm i
+
+script:
+- npm run test
+
 after_script: cat ./coverage/lcov.info | coveralls
