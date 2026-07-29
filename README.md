@@ -1,44 +1,45 @@
-# html-to-array [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Scrap a html page and convert all text on the page into an array.
+# html-to-array
 
-## Installation
+> Scrape an HTML page and return its text as an array.
+
+[![npm](https://img.shields.io/npm/v/html-to-array.svg)](https://www.npmjs.com/package/html-to-array)
+
+Fetches a URL, strips the markup and scripts, collapses the whitespace, and hands
+back the remaining text split into lines.
+
+## Install
 
 ```sh
-$ npm install --save html-to-array
+npm install html-to-array
 ```
 
 ## Usage
 
 ```js
-const HTML_TO_ARRAY = require('html-to-array');
-const URL = 'https://www.robertgabriel.ninja';
-HTML_TO_ARRAY.scrap(URL).then(data =>)
-;
-// Returns an object
-/*
-  let object = {
-    message: 'success',
-    sentences: ['Robert gabriel is cool', 'Here is sentece two']
-  };
-*/
-// Error
-/*
-  let object = {
-    message: 'error',
-    sentences: []
-  };
-*/
+const { scrap } = require('html-to-array');
+
+scrap('https://example.com').then(lines => {
+  console.log(lines);
+});
 ```
+
+## API
+
+### scrap(url)
+
+Returns a `Promise` resolving to an array of text lines.
+
+Input is validated before any request is made, and returns a **string** rather
+than a promise on failure:
+
+| Condition | Returned |
+| --- | --- |
+| Not a string, or empty | `'Not a string'` |
+| Fails URL validation | `'Invaild URL'` |
+
+Markup is removed with [sanitize-html](https://github.com/apostrophecms/sanitize-html)
+before the tags are stripped, so scripts and styles do not appear in the output.
+
 ## License
 
-Apache-2.0 © [Robert James Gabriel](https://www.robertgabriel.ninja)
-
-
-[npm-image]: https://badge.fury.io/js/html-to-array.svg
-[npm-url]: https://npmjs.org/package/html-to-array
-[travis-image]: https://travis-ci.org/RobertJGabriel/html-to-array.svg?branch=master
-[travis-url]: https://travis-ci.org/RobertJGabriel/html-to-array
-[daviddm-image]: https://david-dm.org/RobertJGabriel/html-to-array.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/RobertJGabriel/html-to-array
-[coveralls-image]: https://coveralls.io/repos/RobertJGabriel/html-to-array/badge.svg
-[coveralls-url]: https://coveralls.io/r/RobertJGabriel/html-to-array
+Apache-2.0 © Robert James Gabriel
